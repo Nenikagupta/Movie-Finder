@@ -31,13 +31,62 @@ app.get("/",function(req,res){
 
   response.on("end",function(){
     const Actual_data=JSON.parse(data);
-    console.log(Actual_data.Search[0].Title);
-
     res.render("index",{movies:Actual_data.Search});
     });
 
   });
 
+});
+
+
+app.post("/",function(req,res){
+  const movie_name=req.body.input_movie;
+  const type=req.body.type;
+
+  const omdbapiURL=omdbapi+"?s="+movie_name+"&type="+type+"&apikey="+apikey;
+
+  https.get(omdbapiURL,function(response){
+  var data;
+  response.on("data",function(chunk){
+    if (!data) {
+      data = chunk;
+    } else {
+      data += chunk;
+  }
+  });
+
+
+  response.on("end",function(){
+    const Actual_data=JSON.parse(data);
+    res.render("index",{movies:Actual_data.Search});
+    });
+
+  });
+
+});
+
+app.post("/details",function(req,res){
+  const movie_id=req.body.movie_detail;
+
+  const omdbapiURL=omdbapi+"?i="+movie_id+"&apikey="+apikey;
+
+  https.get(omdbapiURL,function(response){
+  var data;
+  response.on("data",function(chunk){
+    if (!data) {
+      data = chunk;
+    } else {
+      data += chunk;
+  }
+  });
+
+
+  response.on("end",function(){
+    const Actual_data=JSON.parse(data);
+     res.render("movieDetail",{movie:Actual_data});
+    });
+
+  });
 });
 
 app.listen(3000,function(){

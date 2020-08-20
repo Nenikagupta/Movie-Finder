@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>All Movies</title>
+    <link rel="stylesheet" href="styles.css">
+    <!--google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Ubuntu&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  </head>
+  <body>
+    <section class="top">
+      <form class="form" action="/" method="post">
+        <p>MovieSearcher</p>
+      <input type="text" name="input_movie" placeholder="Type your movie here" value="home">
+      <select name="type">
+        <option value="movie">Movie</option>
+        <option value="series">Series</option>
+        <option value="episode">Episode</option>
+      </select>
+      <input type="submit" value="Search">
+    </form>
+  </section>
+
+    <section>
+      <div class="row">
+          <form action="/movie" method="post">
+            <div class="pricing-col card">
+              <div class="card-header">
+                <img src="http://www.placehold.it/" alt="movie_image">
+              </div>
+              <div class="card-body">
+                <p>Movie name</p>
+                <input type="submit" value="Movie Detail" class="btn btn-primary btn-block btn-lg b1">
+              </div>
+            </div>
+          </form>
+      </div>
+    </section>
+  </body>
+</html>

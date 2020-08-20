@@ -14,7 +14,7 @@ const apikey="5343a78a";
 
 app.get("/",function(req,res){
 
-  const s="Home Alone";
+  const s="home";
   const type="movie";
   const omdbapiURL=omdbapi+"?s="+s+"&type="+type+"&apikey="+apikey;
 
@@ -28,11 +28,12 @@ app.get("/",function(req,res){
   }
   });
 
+
   response.on("end",function(){
     const Actual_data=JSON.parse(data);
     console.log(Actual_data.Search[0].Title);
 
-    res.send("<img src="+ Actual_data.Search[0].Poster+">" );
+    res.render("index",{movies:Actual_data.Search});
     });
 
   });

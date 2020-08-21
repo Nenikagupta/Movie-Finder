@@ -58,7 +58,13 @@ app.post("/",function(req,res){
 
   response.on("end",function(){
     const Actual_data=JSON.parse(data);
-    res.render("index",{movies:Actual_data.Search});
+    console.log(Actual_data);
+    if (Actual_data.Error) {
+        res.render("error");
+    }else{
+        res.render("index",{movies:Actual_data.Search});
+    }
+
     });
 
   });
@@ -89,8 +95,13 @@ app.post("/details",function(req,res){
   });
 });
 
-app.listen(3000,function(){
-  console.log("Server has started at host 3000");
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
+
+app.listen(port,function(){
+  console.log("Server has started at host"+ port);
 });
 
 
